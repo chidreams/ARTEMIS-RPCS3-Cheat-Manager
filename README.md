@@ -1,6 +1,6 @@
 # ARTEMIS — RPCS3 Cheat Manager
 
-A single-file, zero-dependency desktop app for managing **RPCS3 `patch.yml`**
+A single-file, zero-dependency desktop app for managing **RPCS3 `imported_patch.yml`**
 cheat files. Built for porting and organizing PS3 cheats (netcheat → RPCS3
 patch format), with a PS3 XMB-flavored interface.
 
@@ -8,14 +8,14 @@ Pure **Python 3 + Tkinter** — no `pip install` of anything, no external
 libraries. Runs as a script, or build it into a standalone `.exe` that needs
 no Python at all.
 
-> Cheats by **dron_3** · ported & tooling by **ChiDreams**
+> Cheats by **Host of Creators** · ported & tooling by **ChiDreams**
 
 ---
 
 ## What it does
 
 ARTEMIS reads, validates, edits, and organizes the YAML patch files RPCS3 uses
-for cheats. Instead of hand-editing a giant `patch.yml` and hoping the syntax
+for cheats. Instead of hand-editing a giant `imported_patch.yml` and hoping the syntax
 is right, you get a real UI that understands the format and won't let you write
 a broken patch line.
 
@@ -171,7 +171,7 @@ under `Games:` — useful when a decrypted ELF is identical across regions (the
 
 ## Credits & license
 
-- Cheats authored by **dron_3**; ported and maintained by **ChiDreams**.
+- Cheats authored by **Host of Creators**; ported and maintained by **ChiDreams**.
 - Patch collection: https://github.com/chidreams/Artemis-Patch-Collection-RPCS3
 
 License: _add a LICENSE file (MIT is a common choice for tools like this; you
