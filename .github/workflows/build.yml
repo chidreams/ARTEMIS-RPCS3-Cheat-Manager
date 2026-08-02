@@ -1,0 +1,63 @@
+name: Build Standalone Artemis Executables
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  build:
+    name: Build on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            asset_name: Artemis-Manager-Windows.exe
+            build_cmd: pyinstaller --onefile --noconsole --name "Artemis-Manager-Windows" artemis.py
+            output_path: dist/Artemis-Manager-Windows.exe
+
+          - os: ubuntu-latest
+            asset_name: Artemis-Manager-Linux
+            build_cmd: pyinstaller --onefile --noconsole --name "Artemis-Manager-Linux" artemis.py
+            output_path: dist/Artemis-Manager-Linux
+
+          - os: macos-latest
+            asset_name: Artemis-Manager-macOS
+            build_cmd: pyinstaller --onefile --noconsole --name "Artemis-Manager-macOS" artemis.py
+            output_path: dist/Artemis-Manager-macOS
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Linux Dependencies (Tkinter)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt update
+        sudo apt install -y python3-tk tk-dev
+
+    - name: Install Python Dependencies & PyInstaller
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Build Executable
+      run: ${{ matrix.build_cmd }}
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.asset_name }}
+        path: ${{ matrix.output_path }}
