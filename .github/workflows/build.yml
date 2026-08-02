@@ -4,10 +4,13 @@ on:
   push:
     branches: [ "main", "master" ]
     tags:
-      - 'v*'
+      - 'v*' # Triggers automatic release creation when you push a version tag like v1.0.0
   pull_request:
     branches: [ "main", "master" ]
   workflow_dispatch:
+
+permissions:
+  contents: write # Grants permission to create GitHub Releases and upload files
 
 jobs:
   build:
@@ -18,7 +21,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            asset_name: Artemis-Manager-Windows
+            asset_name: Artemis-Manager-Windows.exe
             output_path: dist/Artemis-Manager-Windows.exe
             shell: pwsh
 
@@ -28,7 +31,7 @@ jobs:
             shell: bash
 
           - os: macos-latest
-            asset_name: Artemis-Manager-macOS
+            asset_name: Artemis-Manager-macOS.app
             output_path: dist/Artemis-Manager-macOS.app
             shell: bash
 
@@ -51,14 +54,14 @@ jobs:
         sudo apt update
         sudo apt install -y python3-tk tk-dev
 
-    - name: Install Python Dependencies & PyInstaller (Windows)
+    - name: Install Dependencies (Windows)
       if: runner.os == 'Windows'
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
         if (Test-Path requirements.txt) { pip install -r requirements.txt }
 
-    - name: Install Python Dependencies & PyInstaller (Linux & macOS)
+    - name: Install Dependencies (Linux & macOS)
       if: runner.os != 'Windows'
       run: |
         python -m pip install --upgrade pip
@@ -80,8 +83,15 @@ jobs:
       run: |
         pyinstaller --onefile --windowed --name "Artemis-Manager-macOS" src/cheat_manager.py
 
-    - name: Upload Build Artifacts
+    - name: Upload Build Artifacts to Actions
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.asset_name }}
         path: ${{ matrix.output_path }}
+
+    - name: Create GitHub Release and Attach Binaries
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: ${{ matrix.output_path }}
+        generate_release_notes: true
