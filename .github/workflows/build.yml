@@ -18,7 +18,7 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            asset_name: Artemis-Manager-Windows.exe
+            asset_name: Artemis-Manager-Windows
             output_path: dist/Artemis-Manager-Windows.exe
             shell: pwsh
 
@@ -29,7 +29,7 @@ jobs:
 
           - os: macos-latest
             asset_name: Artemis-Manager-macOS
-            output_path: dist/Artemis-Manager-macOS
+            output_path: dist/Artemis-Manager-macOS.app
             shell: bash
 
     defaults:
@@ -55,21 +55,22 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Build Windows Executable
       if: runner.os == 'Windows'
       run: |
-        pyinstaller --onefile --noconsole --name "Artemis-Manager-Windows" cheat_manager1.0.1-RC2.py
+        pyinstaller --onefile --noconsole --name "Artemis-Manager-Windows" src/cheat_manager.py
 
     - name: Build Linux Executable
       if: runner.os == 'Linux'
       run: |
-        pyinstaller --onefile --noconsole --name "Artemis-Manager-Linux" cheat_manager1.0.1-RC2.py
+        pyinstaller --onefile --noconsole --name "Artemis-Manager-Linux" src/cheat_manager.py
 
     - name: Build macOS Executable
       if: runner.os == 'macOS'
       run: |
-        pyinstaller --onefile --windowed --name "Artemis-Manager-macOS" cheat_manager1.0.1-RC2.py
+        pyinstaller --onefile --windowed --name "Artemis-Manager-macOS" src/cheat_manager.py
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
