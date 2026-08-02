@@ -59,17 +59,17 @@ jobs:
     - name: Build Windows Executable
       if: runner.os == 'Windows'
       run: |
-        pyinstaller --onefile --noconsole --name "Artemis-Manager-Windows" artemis.py
+        pyinstaller --onefile --noconsole --name "Artemis-Manager-Windows" cheat_manager1.0.1-RC2.py
 
     - name: Build Linux Executable
       if: runner.os == 'Linux'
       run: |
-        pyinstaller --onefile --noconsole --name "Artemis-Manager-Linux" artemis.py
+        pyinstaller --onefile --noconsole --name "Artemis-Manager-Linux" cheat_manager1.0.1-RC2.py
 
     - name: Build macOS Executable
       if: runner.os == 'macOS'
       run: |
-        pyinstaller --onefile --windowed --name "Artemis-Manager-macOS" artemis.py
+        pyinstaller --onefile --windowed --name "Artemis-Manager-macOS" cheat_manager1.0.1-RC2.py
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
