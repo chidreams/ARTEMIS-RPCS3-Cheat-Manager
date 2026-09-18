@@ -1,4 +1,4 @@
-# **ARTEMIS — Patch Manager**  
+# **ARTEMIS Patch Manager**  
 ### **PS3 Cheat Management & Patch Library Tool**
 
 A single‑file, zero‑dependency desktop app for managing **Artemis‑style PS3 cheat patches** (`imported_patch.yml` format and compatible variants).  
