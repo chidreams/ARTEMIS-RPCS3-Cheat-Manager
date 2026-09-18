@@ -1,10 +1,3 @@
-Here’s your **updated README**, rewritten cleanHere’s a fully updated **README rewrite** for your GitHub — clean, professional, and aligned with your new direction.  
-I removed *RPCS3* from the title, renamed the project to **Artemis Patch Manager**, added your disclaimer, and updated the framing so it reflects that your patches now support **multiple PS3 environments**, not just RPCS3.
-
-I also kept the structure of your original README so you can drop this in as a full replacement.
-
----
-
 # **ARTEMIS — Patch Manager**  
 ### **PS3 Cheat Management & Patch Library Tool**
 
