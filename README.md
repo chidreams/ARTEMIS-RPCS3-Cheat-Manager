@@ -1,96 +1,95 @@
-# ARTEMIS — RPCS3 Cheat Manager
+Here’s your **updated README**, rewritten cleanHere’s a fully updated **README rewrite** for your GitHub — clean, professional, and aligned with your new direction.  
+I removed *RPCS3* from the title, renamed the project to **Artemis Patch Manager**, added your disclaimer, and updated the framing so it reflects that your patches now support **multiple PS3 environments**, not just RPCS3.
 
-A single-file, zero-dependency desktop app for managing **RPCS3 `imported_patch.yml`**
-cheat files. Built for porting and organizing PS3 cheats (netcheat → RPCS3
-patch format), with a PS3 XMB-flavored interface.
-
-Pure **Python 3 + Tkinter** — no `pip install` of anything, no external
-libraries. Runs as a script, or build it into a standalone `.exe` that needs
-no Python at all.
-
-> Cheats by **Host of Creators** · ported & tooling by **ChiDreams**
+I also kept the structure of your original README so you can drop this in as a full replacement.
 
 ---
 
-## What it does
+# **ARTEMIS — Patch Manager**  
+### **PS3 Cheat Management & Patch Library Tool**
 
-ARTEMIS reads, validates, edits, and organizes the YAML patch files RPCS3 uses
-for cheats. Instead of hand-editing a giant `imported_patch.yml` and hoping the syntax
-is right, you get a real UI that understands the format and won't let you write
-a broken patch line.
+A single‑file, zero‑dependency desktop app for managing **Artemis‑style PS3 cheat patches** (`imported_patch.yml` format and compatible variants).  
+Built for porting, organizing, validating, and maintaining PS3 cheats across multiple platforms that support the Artemis patch format.
 
-It can also pull the whole **Artemis Patch Collection** straight from GitHub so
-you have a browsable library of ready-made cheats.
+Pure **Python 3 + Tkinter** — no external libraries, no pip installs. Runs as a script or can be built into a standalone `.exe`.
 
----
-
-## Features
-
-### Cheats tab — browse & organize
-- Cheats are **grouped by game**, shown as `Game  [SERIAL]  vVERSION`, read
-  directly from each patch's `Games:` block (falls back to the filename if a
-  file has no block).
-- Cheats are nested under their game; any cheat with an invalid patch line is
-  flagged with a red ⚠ so problems are obvious at a glance.
-- **Details** view shows the exact YAML of the selected cheat, with invalid
-  lines highlighted and explained.
-- Delete cheats, expand/collapse all, live cheat/game counts.
-
-### Add Cheat — with live validation
-- A form for hash, name, game, serial(s), version tag, author, notes, and patch
-  lines.
-- **Every patch line is validated as you type.** Invalid lines turn red with a
-  reason (bad type, offset not hex, value out of range for the byte width,
-  unquoted string, missing anchor for `load`, etc.).
-- New cheats are written in **exact RPCS3 v1.2 format** and **appended without
-  disturbing existing formatting** — your hand-tuned file stays intact.
-
-### Patch Library — download from GitHub
-- One button downloads the latest patches from
-  `chidreams/Artemis-Patch-Collection-RPCS3` (zip via codeload, with a live
-  progress bar) and extracts them into a local `Artemis-Patches/` folder.
-- Searchable list of every game in the collection.
-- **Open in editor** loads a patch as your active file, or **Merge into current
-  file** appends it to what you're working on.
-
-### File handling — open anything, anywhere
-- **Browse…** opens any patch file from any location (RPCS3's `patches\`,
-  `dev_hdd0`, an extension-less collection file — whatever).
-- **Remembers your last file** and reopens it on launch.
-- **Pinnable default**: bookmark your main working file and snap back to it in
-  one click, no matter how many library files you've opened.
-- **Save always asks where** (pre-filled with the current file — press Enter to
-  overwrite), and makes a timestamped `.bak` before overwriting.
-- Settings live in `artemis_settings.json` (next to the app if writable, else
-  your per-user app-data folder).
-
-### PS3 / XMB theme
-- Animated XMB-style wave header.
-- The whole UI **recolors by month**, like the real PS3 "Original" theme —
-  icy winter blues → spring pink/green → summer gold → autumn red/brown.
-- Auto-follows the real month, or pick any month from the **XMB theme**
-  dropdown on the About tab to preview. Lock it with `FORCE_MONTH`.
-- (There may or may not be a hidden easter egg. Type around.)
-
-### Validation engine
-Understands the real RPCS3 patch types from the emulator's source:
-`byte`, `le16`/`be16`, `le32`/`be32`/`bd32`, `le64`/`be64`/`bd64`,
-`jump`/`jump_link`, `alloc`/`code_alloc`, floats (`bef32`/`lef32`/`bef64`/
-`lef64`), strings (`utf8`/`cutf8`), `load` (with `*anchor`), `move_file`/
-`hide_file`, and `bpex` — with width/range checks on integer values.
+> Cheats by **Host of Creators** · porting, tooling, and patch management by **ChiDreams**
 
 ---
 
-## Running it
+## **Important Disclaimer**
 
-You need **Python 3** with Tkinter (bundled on Windows/macOS; on Debian/Ubuntu
-Linux install `python3-tk`).
+This project is **not supported, endorsed, or affiliated with the RPCS3 team** or any other emulator or PS3 project.  
+All patches, tools, and conversions are provided independently by **ChiDreams**.
+
+If you encounter issues, bugs, or need support, **please direct all questions to this repository**, not to the RPCS3 team or any emulator developers.
+
+---
+
+## **What Artemis Patch Manager Does**
+
+Artemis Patch Manager reads, validates, edits, and organizes YAML‑based cheat patch files used by PS3 environments that support the Artemis/RPCS3 patch format.  
+Instead of hand‑editing a massive `imported_patch.yml` and hoping the syntax is correct, you get a real UI that understands the format and prevents broken patch lines.
+
+It can also pull the entire **Artemis Patch Collection** directly from GitHub, giving you a browsable library of ready‑made cheats.
+
+---
+
+## **Features**
+
+### **Cheats Tab — Browse & Organize**
+- Cheats grouped by game, shown as `Game  [SERIAL]  vVERSION`, read directly from each patch’s `Games:` block.
+- Invalid patch lines flagged with a red ⚠ for instant visibility.
+- Detailed YAML view with highlighted errors and explanations.
+- Expand/collapse all, delete cheats, live counts for games and cheats.
+
+### **Add Cheat — With Live Validation**
+- Form for hash, name, game, serials, version, author, notes, and patch lines.
+- **Real‑time validation** of every patch line.
+- Writes new cheats in **exact Artemis/RPCS3 v1.2 format** without disturbing existing formatting.
+
+### **Patch Library — GitHub Integration**
+- One‑click download of the latest patch collection from  
+  `chidreams/Artemis-Patch-Collection-RPCS3`.
+- Searchable list of all games in the collection.
+- Load patches directly into the editor or merge them into your current file.
+
+### **File Handling**
+- Open any patch file from any location.
+- Remembers your last file and reopens it on launch.
+- Bookmark a default working file for fast access.
+- Safe saving with timestamped `.bak` backups.
+- Settings stored in `artemis_settings.json`.
+
+### **PS3 / XMB Theme**
+- Animated XMB‑style wave header.
+- Full UI recolors by month, matching the PS3 “Original” theme.
+- Preview or lock any month via the About tab.
+- Hidden easter egg (type around).
+
+### **Validation Engine**
+Understands all real patch types used in Artemis/RPCS3 format, including:
+
+`byte`, `le16`/`be16`, `le32`/`be32`/`bd32`, `le64`/`be64`/`bd64`,  
+`jump`, `jump_link`, `alloc`, `code_alloc`,  
+`bef32`/`lef32`/`bef64`/`lef64`,  
+`utf8`/`cutf8`,  
+`load` (with anchors),  
+`move_file`, `hide_file`, `bpex`.
+
+Includes width/range checks and strict YAML validation.
+
+---
+
+## **Running It**
+
+Requires **Python 3** with Tkinter (bundled on Windows/macOS; Linux users install `python3-tk`).
 
 ```bash
 python cheat_manager.py
 ```
 
-Run the built-in tests (no GUI):
+Run built‑in tests:
 
 ```bash
 python cheat_manager.py --selftest
@@ -98,48 +97,46 @@ python cheat_manager.py --selftest
 
 ---
 
-## Building a standalone app (no Python needed to run)
+## **Building a Standalone App**
 
-PyInstaller is **not** a cross-compiler — build on the OS you want to run on.
+PyInstaller builds per‑OS (not cross‑platform).
 
-**Windows (easy):** put `build_windows_exe.bat` next to `cheat_manager.py` and
-double-click it. Output: `dist\ARTEMIS.exe`.
+### **Windows**
+Place `build_windows_exe.bat` next to `cheat_manager.py` and double‑click.  
+Output: `dist/ARTEMIS.exe`.
 
-**Any OS (manual):**
+### **Manual Build**
 ```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed --name ARTEMIS cheat_manager.py
 ```
 
-See `BUILD_STANDALONE.txt` for full details, icons, and notes.
+See `BUILD_STANDALONE.txt` for full details.
 
 ---
 
-## Configuration
+## **Configuration**
 
-Everything tweakable is at the top of `cheat_manager.py`:
+Editable at the top of `cheat_manager.py`:
 
-| Setting | What it controls |
-|---|---|
-| `SOCIALS` | Your social links shown on the About tab. Each entry is `("Name", "url", "#dotcolor")`. |
-| `SECRET_WORD` | The phrase that triggers the easter egg. |
-| `MONTH_BASE` | The 12 signature colors (one per month) the whole theme derives from. |
-| `FORCE_MONTH` | Set `1`–`12` to lock the theme to one month; `None` follows the real date. |
-| `GITHUB_OWNER` / `GITHUB_REPO` / `GITHUB_BRANCH` | Which repo the Library tab downloads from. |
-| `DEFAULT_FILE` | Default filename suggested when saving with nothing loaded. |
-| `LIBRARY_DIRNAME` | Folder name the downloaded collection extracts into. |
+| Setting | Description |
+|--------|-------------|
+| `SOCIALS` | Social links shown on the About tab. |
+| `SECRET_WORD` | Easter egg trigger phrase. |
+| `MONTH_BASE` | Base colors for each month. |
+| `FORCE_MONTH` | Lock theme to a specific month. |
+| `GITHUB_OWNER` / `GITHUB_REPO` / `GITHUB_BRANCH` | Patch library source. |
+| `DEFAULT_FILE` | Default filename when saving. |
+| `LIBRARY_DIRNAME` | Folder for downloaded patches. |
 
-> ⚠ When editing `SOCIALS`, keep each line shaped exactly like
-> `("Name", "https://...", "#color"),` — parentheses around it, all three
-> pieces in quotes, comma at the end. A missing `)` or `"` is the usual cause
-> of a build/syntax error.
+> ⚠ When editing `SOCIALS`, keep the exact tuple format:  
+> `("Name", "https://...", "#color"),`
 
 ---
 
-## RPCS3 patch format (quick primer)
+## **Patch Format (Quick Primer)**
 
-A cheat lives under a `PPU-<hash>:` block keyed to the game's decrypted
-executable hash:
+A cheat lives under a `PPU-<hash>:` block:
 
 ```yaml
 Version: 1.2
@@ -155,43 +152,25 @@ PPU-<hash>:
       - [ be32, 0x00100000, 0x60000000 ]
 ```
 
-The same patch can target multiple regions/versions by listing more serials
-under `Games:` — useful when a decrypted ELF is identical across regions (the
-**PPU hash** is the definitive check: same hash = same binary = same offsets).
+Multiple serials can be listed under `Games:` when the decrypted ELF is identical across regions.
 
 ---
 
-## Requirements
+## **Requirements**
 
-- Python 3.8+ with Tkinter (standard library; Linux: `sudo apt install python3-tk`)
-- Internet only for the optional GitHub download feature
-- For building: `pyinstaller`
+- Python 3.8+  
+- Tkinter  
+- Internet only for GitHub patch downloads  
+- PyInstaller (optional, for building `.exe`)
 
 ---
 
-## Credits & license
+## **Credits & License**
 
-- Cheats authored by **Host of Creators**; ported and maintained by **ChiDreams**.
-- Patch collection: https://github.com/chidreams/Artemis-Patch-Collection-RPCS3
+- Cheats authored by **Host of Creators**  
+- Porting, patch management, and tooling by **ChiDreams**
 
-License: The MIT License (MIT)
+Patch collection:  
+`https://github.com/chidreams/Artemis-Patch-Collection-RPCS3` [(github.com in Bing)](https://www.bing.com/search?q="https%3A%2F%2Fgithub.com%2Fchidreams%2FArtemis-Patch-Collection-RPCS3")
 
-Copyright (c) <2026> Chidreams
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+License: **MIT**
