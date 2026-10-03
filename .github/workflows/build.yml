@@ -1,4 +1,4 @@
-name: Build CustomTkinter Application
+name: Build Artemis
 
 on:
   push:
@@ -21,13 +21,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # Change to match your target environment
+          python-version: '3.11' 
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install customtkinter pyinstaller
-          # pip install -r requirements.txt
+          pip install customtkinter pyinstaller pymem
         shell: bash
 
       - name: Locate CustomTkinter Installation Path
@@ -39,17 +38,17 @@ jobs:
       - name: Build Executable (Windows)
         if: runner.os == 'Windows'
         run: |
-          pyinstaller --noconfirm --onefile --windowed --add-data "${{ env.CTK_PATH }};customtkinter/" --hidden-import customtkinter --add-data "src/logo.png;." --add-data "src/artemis_settings.json;." --name "ARTEMIS" src/cheat_manager.py
+          pyinstaller --noconfirm --onefile --windowed --add-data "${{ env.CTK_PATH }};customtkinter/" --add-data "src/logo.png;." --add-data "src/artemis_settings.json;." --hidden-import customtkinter --hidden-import pymem --name "Artemis" src/cheat_manager.py
         shell: bash
 
       - name: Build Executable (Linux & macOS)
         if: runner.os != 'Windows'
         run: |
-          pyinstaller --noconfirm --onefile --windowed --add-data "${{ env.CTK_PATH }}:customtkinter/" --hidden-import customtkinter --add-data "src/logo.png;." --add-data "src/artemis_settings.json;." --name "ARTEMIS" src/cheat_manager.py
+          pyinstaller --noconfirm --onefile --windowed --add-data "${{ env.CTK_PATH }}:customtkinter/" --add-data "src/logo.png:." --add-data "src/artemis_settings.json:." --hidden-import customtkinter --hidden-import pymem --name "Artemis" src/cheat_manager.py
         shell: bash
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: App-Build-${{ runner.os }}
+          name: Artemis-Build-${{ runner.os }}
           path: dist/
